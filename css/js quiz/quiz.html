@@ -1,0 +1,109 @@
+<html>
+<head>
+<title>State Capitols Quiz</title>
+<style type="text/css">
+.chkans {
+margin:10px 10px -5px 0;
+} 
+
+span.chkans {
+position:relative;
+top:5px
+} 
+
+* html span.chkans {
+top:2px
+} 
+</style>
+<script type="text/javascript">
+/*/////////////////////////////
+* Quiz Evaluation Script © jscheuer1
+* permission to use granted
+* this credit must stay intact
+/////////////////////////////*/
+
+//Set number of questions
+var numQuest=3
+
+////////////////Stop Editing///////////////
+var ie=document.all
+function showAnswer(el,ans){
+ie? ie[el].innerHTML='The answer is: '+ ans : document.getElementById(el).innerHTML='The answer is: '+ ans
+}
+
+function addup()  {
+var q, right, statement, total=0
+questions=new Array();
+for (i = 0; i < numQuest; i++)
+questions[i]=0
+if (document.forms.quiz.q1['right1']){
+for (i = 0; i < numQuest; i++){
+q="q"+(i+1)
+right="right"+(i+1)
+if (document.forms.quiz[q][right].checked)
+questions[i]=1
+}
+}
+else if (document.getElementById){
+for (i = 0; i < numQuest; i++){
+right="right"+(i+1)
+if (document.getElementById(right).checked)
+questions[i]=1
+}
+}
+else
+return;
+for (i = 0; i < numQuest; i++)
+total += questions[i]
+/*/////////////////////////////////////////////////
+Set score response below.
+///////////////////Edit Below to Suit/////////////*/
+statement='You scored '+ total +' out of '+ numQuest +' correct, '+ Math.round(total/numQuest*100) +'%'
+/////////////////Stop Editing///////////////////
+ie? ie.results.innerHTML=statement : document.getElementById('results').innerHTML=statement
+}
+function clearR(){
+ie? ie.results.innerHTML='' : document.getElementById('results').innerHTML=''
+for (i = 0; i < numQuest; i++)
+ie? ie["ans"+(i+1)].innerHTML='' : document.getElementById("ans"+(i+1)).innerHTML=''
+}
+</script>
+</head>
+<body>
+<h1>State Capitols Quiz</h1>
+This page will tell what you know about state capitols.<br><br>
+<h2>Directions:</h2>
+Click on the correct answer.<br><br>
+<hr>
+<form name="quiz">
+<!--Edit and/or add questions below-->
+<!--Be sure to follow the format shown-->
+Question 1:<br>
+What is the capitol of Pennsylvania?<br>
+<input id="right1" type="radio" unchecked name="q1"><label for="right1">Harrisburg</label><br>
+<input id="w1a" type="radio" unchecked name="q1"><label for="w1a">Oswego</label><br>
+<input id="w1b" type="radio" unchecked name="q1"><label for="w1b">Philadelphia</label><br>
+<input id="w1c" type="radio" unchecked name="q1"><label for="w1c">Denver</label><br>
+<input class="chkans" type="button" value="Check Answer" onclick="showAnswer('ans1','Harrisburg')">&nbsp;<span id="ans1" class="chkans"></span>
+<br>&nbsp;<br>
+Question 2:<br>
+What is the capitol of New Jersey?<br>
+<input id="w2a" type="radio" unchecked name="q2"><label for="w2a">Princeton</label><br>
+<input id="w2b" type="radio" unchecked name="q2"><label for="w2b">North Orange</label><br>
+<input id="right2" type="radio" unchecked name="q2"><label for="right2">Trenton</label><br>
+<input id="w2c" type="radio" unchecked name="q2"><label for="w2c">Labrador</label><br>
+<input class="chkans" type="button" value="Check Answer" onclick="showAnswer('ans2','Trenton')">&nbsp;<span id="ans2" class="chkans"></span>
+<br>&nbsp;<br>
+Question 3:<br>
+What is the capitol of Montana?<br>
+<input id="w3a" type="radio" unchecked name="q3"><label for="w3a">Billings</label><br>
+<input id="right3" type="radio" unchecked name="q3"><label for="right3">Helena</label><br>
+<input id="w3b" type="radio" unchecked name="q3"><label for="w3b">Shelby</label><br>
+<input id="w3c" type="radio" unchecked name="q3"><label for="w3c">Tabasco</label><br>
+<input class="chkans" type="button" value="Check Answer" onclick="showAnswer('ans3','Helena')">&nbsp;<span id="ans3" class="chkans"></span>
+<br>&nbsp;<br>
+<!--End of Questions-->
+<hr><br>
+<input type="button" value="See Score" onclick="addup()">&nbsp;&nbsp;<span id="results"></span><br>&nbsp;<br>
+<input type="button" value="Start Again" onclick="reset();clearR()">
+</form></body></html>
